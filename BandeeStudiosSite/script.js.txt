@@ -1,0 +1,18 @@
+// Mobile nav toggle
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+menuBtn.addEventListener('click', () => {
+  const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+  menuBtn.setAttribute('aria-expanded', String(!expanded));
+  mobileNav.hidden = expanded;
+});
+
+// Parallax on hero media
+const parallax = document.getElementById('parallax');
+parallax.addEventListener('pointermove', (e) => {
+  const rect = parallax.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - 0.5;
+  const y = (e.clientY - rect.top) / rect.height - 0.5;
+  parallax.style.transform = `perspective(900px) rotateY(${x*4}deg) rotateX(${-y*4}deg)`;
+});
+parallax.addEventListener('pointerleave', ()=>{ parallax.style.transform = 'none'; });
